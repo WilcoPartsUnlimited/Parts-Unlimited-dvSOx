@@ -137,6 +137,7 @@ router.get("/feed", auth.required, function(req, res, next) {
 });
 
 router.post("/", auth.required, function(req, res, next) {
+  console.log({payload: req.payload, body: req.body});
   User.findById(req.payload.id)
     .then(function(user) {
       if (!user) {
