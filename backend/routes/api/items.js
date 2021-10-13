@@ -140,6 +140,7 @@ router.post("/", auth.required, function(req, res, next) {
   console.log({payload: req.payload, body: req.body});
   User.findById(req.payload.id)
     .then(function(user) {
+      console.log({user});
       if (!user) {
         return res.sendStatus(401);
       }
@@ -147,13 +148,16 @@ router.post("/", auth.required, function(req, res, next) {
       var item = new Item(req.body.item);
 
       item.seller = user;
-
+      console.log({item});
       return item.save().then(function() {
         console.log(item.seller);
         return res.json({ item: item.toJSONFor(user) });
       });
     })
-    .catch(next);
+    .catch(e => {
+	console.log({e});
+	next(e);
+     });
 });
 
 // return a item
