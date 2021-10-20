@@ -21,4 +21,4 @@ jobs:
 
       - name: Wilco checks
         id: Wilco
-        uses: trywilco/actions@shem0.4
+        uses: trywilco/actions@shem0.5
